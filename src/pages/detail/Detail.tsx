@@ -1,5 +1,6 @@
 import React from "react"; 
 
-export const Detail:React.FC =()=> {
+ const Detail:React.FC =()=> {
   return <div className="detail">detail</div>
 }
+export default Detail

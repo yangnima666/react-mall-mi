@@ -1,41 +1,43 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import React from "react"
-import { Home, Detail } from '../pages'
+import { Redirect } from 'react-router-dom'
+import React, { lazy, Suspense } from "react"
+import Home from '../pages/home/Home'
 
 
 
-const routerConfig = [
-  {
-    path: '/',
-    exact: true,
-    component: Home
-  },
-  {
-    path: '/detail',
-    exact: false,
-    component: Detail
-  }
+const Detail = lazy(() => import('../pages/detail/Detail'))
+const Index = lazy(() => import('../pages/index'))
+const SuspenseComponent = (Component: any) => (props: any) => {
+  return (
+    <Suspense fallback={null}>
+      <Component {...props}></Component>
+    </Suspense>
+  )
+}
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default [{ 
+  path: '/',
+  component:Home,
+  extra:true,
+  
+  routes: [
+    {
+      path: '/',
+      exact: true,
+      render:()=>(<Redirect to={'/index'}></Redirect>),
+    },
+    {
+      path: '/index',
+      component: SuspenseComponent(Index)
+    },
+    {
+      path: '/detail/:id',
+      component: SuspenseComponent(Detail)
+    }
+  
+  ]}
+  
+ 
 ]
 
 
-class AppRouter extends React.Component {
-  render() {
-    return (
-      <div>
-        <Router>
-          <Switch>
-            {routerConfig.map((item) => (
-              <Route exact={item.exact}
-                path={item.path}
-                component={item.component}
-                key={item.path}
-                ></Route>
-            ))}
-          </Switch>
-        </Router>
-      </div>
-    )
-  }
-}
-
-export default AppRouter

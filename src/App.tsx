@@ -1,21 +1,26 @@
+
 import React from 'react';
+import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
+import { BrowserRouter } from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.module.css';
-import AppRouter from './router';
+import store from './redux/store';
+import router from './router';
 
 
 
-class App extends React.Component {
-  
-  render() {
-    return (
-      <div className="App">
-        
-        <AppRouter></AppRouter>
-      </div>
-    );
-  }
-
+function App() {
+  return (
+    <div className='App'>
+      <Provider store={store}>
+        <BrowserRouter>
+          {renderRoutes(router)}
+        </BrowserRouter>
+      </Provider>
+      
+    </div>
+  )
 }
 
 export default App;
