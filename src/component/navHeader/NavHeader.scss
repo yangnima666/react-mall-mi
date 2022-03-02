@@ -10,10 +10,8 @@
     background-color: #333333;
     color: #b0b0b0;
     .container {
-      // @include flex();
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex();
+     
       a {
         display: inline-block;
         color: #b0b0b0;
@@ -26,12 +24,12 @@
         color: #ffffff;
         margin-right: 0;
         .icon-cart {
-          // @include bgImg(16px, 12px, "/imgs/icon-cart-checked.png");
-          display: inline-block;
-          width: 16px;
-          height: 12px;
-          background: url("../../../public/imgs/icon-cart-checked.png") no-repeat center;
-          background-size: contain;
+          @include bgImg(16px, 12px, "../../../public/imgs/icon-cart-checked.png");
+          // display: inline-block;
+          // width: 16px;
+          // height: 12px;
+          // background: url("../../../public/imgs/icon-cart-checked.png") no-repeat center;
+          // background-size: contain;
           margin-right: 4px;
         }
       }
@@ -41,10 +39,10 @@
     .container {
       position: relative;
       height: 112px;
-      // @include flex();
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex();
+      // display: flex;
+      // justify-content: space-between;
+      // align-items: center;
       .header-menu {
         display: inline-block;
         width: 643px;

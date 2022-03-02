@@ -1,20 +1,47 @@
-
-import React from "react";
+import React, { useEffect } from "react";
 import './index.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { EffectCube, Pagination,Navigation,Autoplay } from "swiper";
+import { EffectCube, Pagination, Navigation, Autoplay } from "swiper";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { fetchProductData } from "../../redux/product/slice";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 
 
 export const Index: React.FC = () => {
-  const productList = useAppSelector((s:RootState)=>s.indexProduct.data)
+  const menuList = [
+    [
+      {
+        id: 30,
+        img: '/imgs/item-box-1.png',
+        name: '小米CC9',
+      }, {
+        id: 31,
+        img: '/imgs/item-box-2.png',
+        name: '小米8青春版',
+      }, {
+        id: 32,
+        img: '/imgs/item-box-3.jpg',
+        name: 'Redmi K20 Pro',
+      }, {
+        id: 33,
+        img: '/imgs/item-box-4.jpg',
+        name: '移动4G专区',
+      }
+    ],
+    [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
+  ]
+  const productList = useAppSelector((s) => s.product.list)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProductData(8))
+  }, [])
   return (
     <>
       <div className="index">
@@ -24,16 +51,24 @@ export const Index: React.FC = () => {
               <ul className="menu-wrap">
                 <li className="menu-item">
                   <a href="#!">手机 电话卡</a>
-                  {/* <div className="children">
-                <ul src"(item,i) in menuList" src:key="i">
-                  <li src"(sub,j) in item" src:key="j">
-                    <a src:href="sub?'/#/product/'+sub.id:''">
-                      <img src:src="sub?sub.img:'/imgs/item-box-1.png'" alt="">
-                      {{sub?sub.name:'小米9'}}
-                    </a>
-                  </li>
-                </ul>
-              </div> */}
+                  <div className="children">
+                    {
+                      menuList.map((item, index) => (
+                        <ul key={index.toString()}>
+                          {
+                            item.map((subItem: any, subIndex) => (
+                              <li>
+                                <a href={subItem ? '/#/product/' + subItem.id : ''}>
+                                  <img src={subItem ? subItem.img : '/imgs/item-box-1.png'} alt="" />
+                                  {subItem ? subItem.name : '小米9'}
+                                </a>
+                              </li>
+                            ))
+                          }
+                        </ul>
+                      ))
+                    }
+                  </div>
                 </li>
                 <li className="menu-item">
                   <a href="#!">电视 盒子</a>
@@ -59,38 +94,30 @@ export const Index: React.FC = () => {
               </ul>
             </div>
             <Swiper
-              effect={"cube"}
+              
               navigation={true}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,
               }}
               pagination={true}
-              modules={[EffectCube, Pagination,Navigation,Autoplay]}
+              modules={[EffectCube, Pagination, Navigation, Autoplay]}
               className="mySwiper"
             >
               <SwiperSlide>
                 <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
               </SwiperSlide>
             </Swiper>
-            {/* <swiper src:options="swiperOption">
-          <swiper-slide src"(item,index) in slideList" src:key="index">
-            <a src:href="'/#/product/'+item.id"><img src:src="item.img"></a>
-          </swiper-slide>
-          <!-- Optional controls -->
-          <div className="swiper-pagination"  slot="pagination"></div>
-          <div className="swiper-button-prev" slot="button-prev"></div>
-          <div className="swiper-button-next" slot="button-next"></div>
-        </swiper> */}
+            
           </div>
           <div className="ads-box">
             <a href="#!" >
@@ -108,7 +135,7 @@ export const Index: React.FC = () => {
           </div>
           <div className="banner">
             <a href="/#/product/30">
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d8a6d6d37904e22c72130e3e4ec79b41.jpg?w=632&h=340" alt="" />
+              <img src="/imgs/banner-1.png" alt="" />
             </a>
           </div>
         </div>
@@ -117,23 +144,28 @@ export const Index: React.FC = () => {
             <h2>手机</h2>
             <div className="wrapper">
               <div className="banner-left">
-                <a href="/#/product/35"><img src="'/imgs/mix-alpha.jpg'" alt="" /></a>
+                <a href="/#/product/35"><img src='/imgs/mix-alpha.jpg' alt="" /></a>
               </div>
 
               <div className="list-box">
-                <div className="list">
-                  <div className="item" >
-                    <span className="">新品</span>
-                    <div className="item-img">
-                      <img src="item.mainImage" alt="" />
+                {
+                  productList.map((item:any, index:any) => (
+                    <div className="list" key={index.toString()}>
+                      <div className="item" >
+                        {/* <span className="">新品</span> */}
+                        <div className="item-img">
+                          <img src={item.mainImage} alt="" />
+                        </div>
+                        <div className="item-info">
+                          <h3>{item.name}</h3>
+                          <p>{item.subtitle}</p>
+                          <p className="price">{item.price}元</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="item-info">
-                      <h3>名字</h3>
-                      <p>标题</p>
-                      <p className="price">233元</p>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                }
+              
               </div>
             </div>
           </div>

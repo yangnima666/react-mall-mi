@@ -6,15 +6,13 @@ import { NavChildren } from "./NavChildren";
 import './NavHeader.scss'
 
 export const NavHeader: React.FC = () => {
-  const product = useAppSelector(state => state.product.data)
+  const product = useAppSelector(state => state.product.list)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    
-      dispatch(fetchProductData())
-    
+    dispatch(fetchProductData(6))
   }, [])
-  console.log( product)
+  console.log(product)
   return (
 
     <div className="header">
@@ -43,20 +41,23 @@ export const NavHeader: React.FC = () => {
           <div className="header-menu">
             <div className="item-menu">
               <span>小米手机</span>
-              <NavChildren productList={product.data.list}></NavChildren>
-              {/* <div className="children">
+              {/* <NavChildren productList={product}></NavChildren> */}
+              <div className="children">
                 <ul>
                   {
-                    productList.map?.((item: any, index: any) => (
-                      <LiItem
-                        name={item.name}
-                        price={item.price}
-                        mainImage={item.mainImage}
-                        key={index.toString()}
-                      ></LiItem>
+                    product.map((item: any, index: any) => (
+                      <li className="product">
+                        <a href='/#/product/' target="_blank">
+                          <div className="pro-img">
+                            <img src={item.mainImage} alt="" />
+                          </div>
+                          <div className="pro-name">{item.name}</div>
+                          <div className="pro-price">{item.price}元</div>
+                        </a>
+                      </li>
                     ))}
                 </ul>
-              </div> */}
+              </div>
             </div>
             <div className="item-menu">
               <span>RedMi红米</span>
