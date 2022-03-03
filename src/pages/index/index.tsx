@@ -13,7 +13,7 @@ import { fetchProductData } from "../../redux/product/slice";
 // eslint-disable-next-line react-hooks/rules-of-hooks
 
 
-export const Index: React.FC = () => {
+ const Index: React.FC = () => {
   const menuList = [
     [
       {
@@ -23,11 +23,11 @@ export const Index: React.FC = () => {
       }, {
         id: 31,
         img: '/imgs/item-box-2.png',
-        name: '小米8青春版',
+        name: '小米CC9e',
       }, {
         id: 32,
         img: '/imgs/item-box-3.jpg',
-        name: 'Redmi K20 Pro',
+        name: '小米CC9 美图定制版',
       }, {
         id: 33,
         img: '/imgs/item-box-4.jpg',
@@ -58,7 +58,7 @@ export const Index: React.FC = () => {
                           {
                             item.map((subItem: any, subIndex) => (
                               <li>
-                                <a href={subItem ? '/#/product/' + subItem.id : ''}>
+                                <a href={subItem ? '/product/' + subItem.id : ''}>
                                   <img src={subItem ? subItem.img : '/imgs/item-box-1.png'} alt="" />
                                   {subItem ? subItem.name : '小米9'}
                                 </a>
@@ -94,7 +94,6 @@ export const Index: React.FC = () => {
               </ul>
             </div>
             <Swiper
-              
               navigation={true}
               autoplay={{
                 delay: 2500,
@@ -134,7 +133,7 @@ export const Index: React.FC = () => {
             </a>
           </div>
           <div className="banner">
-            <a href="/#/product/30">
+            <a href="/product/30">
               <img src="/imgs/banner-1.png" alt="" />
             </a>
           </div>
@@ -144,7 +143,7 @@ export const Index: React.FC = () => {
             <h2>手机</h2>
             <div className="wrapper">
               <div className="banner-left">
-                <a href="/#/product/35"><img src='/imgs/mix-alpha.jpg' alt="" /></a>
+                <a href="/product/35"><img src='/imgs/mix-alpha.jpg' alt="" /></a>
               </div>
 
               <div className="list-box">
@@ -152,7 +151,7 @@ export const Index: React.FC = () => {
                   productList.map((item:any, index:any) => (
                     <div className="list" key={index.toString()}>
                       <div className="item" >
-                        {/* <span className="">新品</span> */}
+                        <span className="">新品</span>
                         <div className="item-img">
                           <img src={item.mainImage} alt="" />
                         </div>

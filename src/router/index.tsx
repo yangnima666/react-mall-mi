@@ -4,8 +4,9 @@ import Home from '../pages/home/Home'
 
 
 
-const Detail = lazy(() => import('../pages/detail/Detail'))
-const Index = lazy(() => import('../pages/index'))
+const Product = lazy(() => import('../pages/product/Product'))
+const Index = lazy(() => import('../pages/index/'))
+const Detail = lazy(()=>import ('../pages/detail/Detail'))
 const SuspenseComponent = (Component: any) => (props: any) => {
   return (
     <Suspense fallback={null}>
@@ -29,6 +30,10 @@ export default [{
     {
       path: '/index',
       component: SuspenseComponent(Index)
+    },
+    {
+      path: '/product/:id',
+      component: SuspenseComponent(Product)
     },
     {
       path: '/detail/:id',

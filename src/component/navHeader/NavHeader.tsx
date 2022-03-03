@@ -1,8 +1,8 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from '../../redux/hooks'
 import { fetchProductData } from "../../redux/product/slice";
-import { NavChildren } from "./NavChildren";
+
 import './NavHeader.scss'
 
 export const NavHeader: React.FC = () => {
@@ -12,7 +12,7 @@ export const NavHeader: React.FC = () => {
   useEffect(() => {
     dispatch(fetchProductData(6))
   }, [])
-  console.log(product)
+  
   return (
 
     <div className="header">
