@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { ProductParam } from '../../component'
@@ -10,12 +10,15 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import 'swiper/css';
 import './Detail.scss'
+import { Modal } from 'antd';
+import { addCart } from '../../redux/cart/slice'
 
 const Detail: React.FC = () => {
 
   const productInfo = useAppSelector(s => s.productInfo.data)
   const dispatch = useDispatch()
   const location = useLocation()
+  const history = useHistory()
   const productId = location.pathname.slice(8)
   console.log(productId)
   const [version1, setversion1] = useState(false)
@@ -23,12 +26,32 @@ const Detail: React.FC = () => {
     setversion1(!version1)
     setversion2(false)
   }
+  const selected: boolean = true
   const [version2, setversion2] = useState(false)
   const check2 = () => {
     setversion2(!version2)
     setversion1(false)
   }
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    history.push('/cart')
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const addCarts = () => {
+    dispatch(addCart({ productId, selected }))
+    setIsModalVisible(true);
+    
+  }
   useEffect(() => {
     dispatch(getProductInfo(productId))
   }, [])
@@ -62,14 +85,6 @@ const Detail: React.FC = () => {
                 <img src="/imgs/detail/phone-4.jpg" alt="" />
               </SwiperSlide>
             </Swiper>
-            {/* <swiper :options="swiperOption">
-              <swiper-slide><img src="/imgs/detail/phone-1.jpg" alt=""></swiper-slide>
-              <swiper-slide><img src="/imgs/detail/phone-2.jpg" alt=""></swiper-slide>
-              <swiper-slide><img src="/imgs/detail/phone-3.jpg" alt=""></swiper-slide>
-              <swiper-slide><img src="/imgs/detail/phone-4.jpg" alt=""></swiper-slide>
-              <!-- Optional controls -->
-              <div className="swiper-pagination"  slot="pagination"></div>
-          </swiper> */}
           </div>
           <div className="content">
             <h2 className="item-title">{productInfo.name}</h2>
@@ -85,16 +100,14 @@ const Detail: React.FC = () => {
             <div className="item-version clearfix">
               <h2>选择版本</h2>
               {
-                (!version1 && version2)? (
+                (!version1 && version2) ? (
                   <div onClick={check1}>
                     <div className="phone fl" >6GB+64GB 全网通</div>
                   </div>
-
                 ) : (
                   <div onClick={check1}>
                     <div className="phone fl checked" >6GB+64GB 全网通</div>
                   </div>
-
                 )
               }
               {
@@ -104,21 +117,14 @@ const Detail: React.FC = () => {
                       <div className="phone fr" >4GB+64GB 移动4G</div>
                     </div>
                   </>
-
-
                 ) : (
                   <>
                     <div onClick={check2}>
                       <div className="phone fr checked" >4GB+64GB 移动4G</div>
                     </div>
                   </>
-
-
                 )
               }
-              {/* :className="{'checked':version==1}" @click="version=1" */}
-              {/* <div className="phone fr" >4GB+64GB 移动4G</div> */}
-              {/* :className="{'checked':version==2}" @click="version=2" */}
             </div>
             <div className="item-color">
               <h2>选择颜色</h2>
@@ -129,15 +135,19 @@ const Detail: React.FC = () => {
             </div>
             <div className="item-total">
               <div className="phone-info clearfix">
-                <div className="fl">{productInfo.name} {version1?'6GB+64GB 全网通':'4GB+64GB 移动4G'} 深灰色</div>
+                <div className="fl">{productInfo.name} {version1 ? '6GB+64GB 全网通' : '4GB+64GB 移动4G'} 深灰色</div>
                 {/* {{version==1?'6GB+64GB 全网通':'4GB+64GB 移动4G'}} */}
                 <div className="fr">{productInfo.price}元</div>
               </div>
               <div className="phone-total">总计：{productInfo.price}元</div>
             </div>
             <div className="btn-group">
-              <a href="#!" className="btn btn-huge fl" >加入购物车</a>
+              <div className="btn btn-huge fl" onClick={addCarts}>加入购物车</div>
             </div>
+            <Modal title="温馨提示" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+              <p>添加成功</p>
+              
+            </Modal>
           </div>
         </div>
       </div>

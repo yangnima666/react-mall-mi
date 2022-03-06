@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { useHistory } from "react-router-dom";
 import './ProductParam.scss'
 
 interface Props {
   productInfo: any
 }
-export const ProductParam: React.FC<Props> = ({productInfo}) => {
+ const ProductParamComponent: React.FC<Props> = ({productInfo}) => {
   const history = useHistory()
 
   const buy = (id:string) => {
@@ -27,3 +27,4 @@ export const ProductParam: React.FC<Props> = ({productInfo}) => {
     </div>
   )
 }
+ export const ProductParam= memo(ProductParamComponent)

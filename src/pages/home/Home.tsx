@@ -8,7 +8,7 @@ import { NavFooter, NavHeader } from "../../component";
 const Home: React.FC<RouteComponentProps> = (props: any) => {
 
   const { route } = props
-  console.log(route.routes)
+  
   return (
     <div className="home">
       <NavHeader></NavHeader>

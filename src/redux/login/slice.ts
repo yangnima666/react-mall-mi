@@ -21,7 +21,7 @@ export const login = createAsyncThunk(
       password: paramat.password
 
     })
-    console.log(data)
+    
     return data
   }
 )

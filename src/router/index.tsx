@@ -9,6 +9,7 @@ const Index = lazy(() => import('../pages/index/'))
 const Detail = lazy(() => import('../pages/detail/Detail'))
 const Login = lazy(() => import('../pages/login/Login'))
 const Register = lazy(() => import('../pages/register/Register'))
+const Cart = lazy(()=>import('../pages/cart/Cart'))
 const SuspenseComponent = (Component: any) => (props: any) => {
   return (
     <Suspense fallback={null}>
@@ -24,6 +25,10 @@ const router =[
   {
     path: '/register',
     component: SuspenseComponent(Register)
+  },
+  {
+    path: '/cart',
+    component: SuspenseComponent(Cart)
   },
   {
     path: '/',

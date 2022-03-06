@@ -4,7 +4,7 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import './Product.scss'
 import "swiper/css";
 import "swiper/css/pagination";
-import { ProductParam } from '../../component'
+import  {ProductParam}  from '../../component'
 import { useAppSelector } from "../../redux/hooks";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -32,8 +32,7 @@ const Product: React.FC = () => {
     dispatch(getProductInfo(productId))
   }, [])
 
-  console.log('product:', productInfo)
-  console.log(location.pathname.slice(9))
+  
   return <div className="product">
     <ProductParam productInfo={productInfo}></ProductParam>
     <div className="content">

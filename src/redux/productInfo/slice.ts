@@ -12,7 +12,7 @@ export const getProductInfo = createAsyncThunk(
   'productInfo/getProductInfo',
   async (productId:string) => {
     const { data } = await axios.get(`/api/products/${productId}`)
-    console.log(data)
+    
     return data
   }
 )

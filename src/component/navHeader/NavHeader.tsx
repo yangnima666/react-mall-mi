@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { getCart } from "../../redux/cart/slice";
 import { useAppSelector } from '../../redux/hooks'
 import { logout } from "../../redux/login/slice";
 import { fetchProductData } from "../../redux/product/slice";
@@ -10,16 +12,22 @@ export const NavHeader: React.FC = () => {
   const product = useAppSelector(state => state.product.list)
   const data = useAppSelector(s => s.login.data)
   let status = useAppSelector(s => s.login.status)
+  const list = useAppSelector(s=>s.cart.list)
   const dispatch = useDispatch()
-
+  const history = useHistory()
+  const goToCart = ()=> {
+    history.push("/cart")
+  }
   const logOut = () => {
     dispatch(logout())
     status = 1
+    history.push('/index')
   }
   // const [username, setUsername] = useState('')
   console.log(data)
   useEffect(() => {
     dispatch(fetchProductData(6))
+    dispatch(getCart())
   }, [])
   // useEffect(()=> {
   //   setUsername(data.username)
@@ -51,14 +59,14 @@ export const NavHeader: React.FC = () => {
             }
 
 
-            <a href="#!" className="my-cart" ><span className="icon-cart"></span>购物车</a>
+            <a className="my-cart" onClick={goToCart}><span className="icon-cart"></span>购物车({list.length})</a>
           </div>
         </div>
       </div>
       <div className="nav-header">
         <div className="container">
           <div className="header-logo">
-            <a href="#!"></a>
+            <a href="/index"></a>
           </div>
           <div className="header-menu">
             <div className="item-menu">
@@ -68,8 +76,8 @@ export const NavHeader: React.FC = () => {
                 <ul>
                   {
                     product.map((item: any, index: any) => (
-                      <li className="product">
-                        <a href='/#/product/' target="_blank">
+                      <li className="product" key={`product-${index.toString()}`}>
+                        <a href={`/product/${item.id}`}>
                           <div className="pro-img">
                             <img src={item.mainImage} alt="" />
                           </div>

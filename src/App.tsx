@@ -13,14 +13,14 @@ import { Route } from 'react-router-dom'
 function App() {
   return (
     <div className='App'>
-      <Provider store={store}>
+      
         <BrowserRouter>
           <Route>
             {renderRoutes(router)}
           </Route>
 
         </BrowserRouter>
-      </Provider>
+      
 
     </div>
   )

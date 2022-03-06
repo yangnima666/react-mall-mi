@@ -22,9 +22,9 @@ const Login: React.FC = () => {
       history.push('/index')
     }
   }, [status])
-console.log(status)
+
   const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+    
     dispatch(login({
       username: values.username,
       password: values.password
