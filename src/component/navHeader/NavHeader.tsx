@@ -1,18 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from '../../redux/hooks'
+import { logout } from "../../redux/login/slice";
 import { fetchProductData } from "../../redux/product/slice";
 
 import './NavHeader.scss'
 
 export const NavHeader: React.FC = () => {
   const product = useAppSelector(state => state.product.list)
+  const data = useAppSelector(s => s.login.data)
+  let status = useAppSelector(s => s.login.status)
   const dispatch = useDispatch()
 
+  const logOut = () => {
+    dispatch(logout())
+    status = 1
+  }
+  // const [username, setUsername] = useState('')
+  console.log(data)
   useEffect(() => {
     dispatch(fetchProductData(6))
   }, [])
-  
+  // useEffect(()=> {
+  //   setUsername(data.username)
+  // },[])
   return (
 
     <div className="header">
@@ -25,10 +36,21 @@ export const NavHeader: React.FC = () => {
             <a href="#!">协议规则</a>
           </div>
           <div className="topbar-user">
-            <a href="#!">233</a>
-            <a href="#!">登录</a>
-            <a href="#!">退出</a>
-            <a href="/#/order/list">我的订单</a>
+
+            {
+              status ?
+                <>
+                  <a href="/login">登录</a>
+                  <a href="/register">注册</a>
+                </>
+                : (<>
+                  <a href="#!">{data.username}</a>
+                  <a href="#!" onClick={logOut}>退出</a>
+                  <a href="/#/order/list">我的订单</a>
+                </>)
+            }
+
+
             <a href="#!" className="my-cart" ><span className="icon-cart"></span>购物车</a>
           </div>
         </div>

@@ -1,0 +1,10 @@
+@import "../../assets/scss/base.scss";
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/config.scss";
+.login-form-button {
+  background-color: $colorA;
+  border: none;
+  color: #fff;
+  width: 320px;
+  height: 40px;
+}

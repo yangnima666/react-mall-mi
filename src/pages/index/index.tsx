@@ -37,6 +37,7 @@ import { fetchProductData } from "../../redux/product/slice";
     [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
   ]
   const productList = useAppSelector((s) => s.product.list)
+  
   const dispatch = useDispatch()
 
   useEffect(() => {

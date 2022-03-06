@@ -11,7 +11,12 @@ a {
     height: 100%;
   }
 }
-
+div {
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
 input {
   outline: none;
   box-sizing: border-box;
@@ -36,6 +41,7 @@ input {
   display: inline-block;
   width: 55px;
   height: 55px;
+  border-radius: 20px;
   background-color: #ff6600;
   a {
     display: inline-block;
@@ -46,13 +52,13 @@ input {
       @include bgImg(55px, 55px, "../../../public/imgs/mi-logo.png", 55px);
       transition: margin 0.2s;
     }
-    &:after {
-      content: " ";
-      @include bgImg(55px, 55px, "../../../public/imgs/mi-home.png", 55px);
-    }
-    &:hover:before {
-      margin-left: -55px;
-      transition: margin 0.2s;
-    }
+    // &:after {
+    //   content: " ";
+    //   @include bgImg(55px, 55px, "../../../public/imgs/mi-home.png", 55px);
+    // }
+    // &:hover:before {
+    //   margin-left: -55px;
+    //   transition: margin 0.2s;
+    // }
   }
 }

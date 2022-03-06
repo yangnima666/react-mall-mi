@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { userSlice } from './login/slice'
 
 import { productSlice } from './product/slice'
 import { productInfoSlice } from './productInfo/slice'
@@ -6,7 +7,8 @@ import { productInfoSlice } from './productInfo/slice'
 
 const rootReducer = combineReducers({
   product: productSlice.reducer,
-  productInfo:productInfoSlice.reducer
+  productInfo:productInfoSlice.reducer,
+  login:userSlice.reducer
 
 })
 

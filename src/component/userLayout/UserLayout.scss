@@ -1,0 +1,102 @@
+@import "../../assets/scss/base.scss";
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/config.scss";
+
+    .left-banner {
+      width: 100%;
+      img {
+        height: auto;
+        width: 375px;
+      }
+    }
+    .login-header {
+      // width: 100%;
+      padding: 20px 20px 20px 20px;
+      // overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      position: relative;
+      .header-left {
+        display: flex;
+        justify-content: center;
+        height: 55px;
+        //  align-items: center;
+        // position: absolute;
+        .logo {
+          margin-right: 10px;
+        }
+        .title {
+          font-size: 26px;
+          font-weight: 500;
+        }
+      }
+      .header-right {
+        display: flex;
+
+        .menu {
+          display: flex;
+          align-items: center;
+          padding-right: 10px;
+          position: relative;
+          a {
+            color: #838383;
+            margin-left: 10px;
+            margin-right: 10px;
+          }
+          .diver {
+            vertical-align: middle;
+            width: 0px;
+            height: 14px;
+            margin-right: 10px;
+            display: inline-block;
+            border-right: 1px solid #ddd;
+          }
+          .language {
+            color: #838383;
+            position: relative;
+            cursor: pointer;
+            &:after {
+              content: "";
+              display: inline-block;
+              width: 0;
+              height: 0;
+              margin-left: 5px;
+              position: absolute;
+              top: 50%;
+              transform: translate(-20%, -20%);
+              border-top: 5px solid #838383;
+              border-right: 5px solid transparent;
+              border-bottom: 5px solid transparent;
+              border-left: 5px solid transparent;
+            }
+          }
+        }
+      }
+    }
+    .wrapper {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .content {
+      width: 400px;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0 20px 50px 0 hsl(0deg 0% 64% / 10%);
+      .content-header {
+        display: flex;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .tab {
+          font-size: 28px;
+          font-weight: 500;
+          margin-right: 10px;
+        }
+      }
+    }
+    }
+    
+    
+  

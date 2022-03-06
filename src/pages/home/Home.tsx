@@ -1,6 +1,6 @@
 import React from "react";
 import { renderRoutes } from "react-router-config";
-import { RouteComponentProps } from "react-router-dom";
+import { Route, RouteComponentProps } from "react-router-dom";
 import { NavFooter, NavHeader } from "../../component";
 
 // import router from "../../router";
@@ -8,10 +8,14 @@ import { NavFooter, NavHeader } from "../../component";
 const Home: React.FC<RouteComponentProps> = (props: any) => {
 
   const { route } = props
+  console.log(route.routes)
   return (
     <div className="home">
       <NavHeader></NavHeader>
-      {renderRoutes(route.routes)}
+      
+         {renderRoutes(route.routes)}
+      
+     
       <NavFooter />
     </div>
   )
