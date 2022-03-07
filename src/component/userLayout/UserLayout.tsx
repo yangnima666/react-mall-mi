@@ -1,8 +1,10 @@
 import { Layout, Popover } from "antd";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import './UserLayout.scss'
 export const UserLayout: React.FC = (props) => {
   const { Header, Footer, Sider, Content } = Layout;
+  const history = useHistory()
   const content = (
     <div>
       <div style={{ cursor: "pointer" }}>中文</div>
@@ -43,8 +45,8 @@ export const UserLayout: React.FC = (props) => {
         <Content className="wrapper">
           <div className="content">
             <div className="content-header">
-              <div className="tab tab-login">登录</div>
-              <div className="tab tab-register">注册</div>
+              <div className="tab tab-login" onClick={()=> {history.push('/login')}}>登录</div>
+              <div className="tab tab-register" onClick={()=> {history.push('/register')}}>注册</div>
               </div>
             <div className="content-from">{props.children}</div>
           </div>

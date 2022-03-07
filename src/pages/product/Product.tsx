@@ -13,16 +13,16 @@ import { getProductInfo } from "../../redux/productInfo/slice";
 
 const Product: React.FC = () => {
 
-  const productInfo = useAppSelector(s => s.productInfo.data)
+  const productInfo = useAppSelector(s => s.productInfo.data)//获取商品详情
   const location = useLocation()
   const dispatch = useDispatch()
-  const productId = location.pathname.slice(9)
+  const productId = location.pathname.slice(9)//获取商品id
+  //控制视频弹窗显示
   const [isModalVisible, setIsModalVisible] = useState(false);
   
   const showModal = () => {
     setIsModalVisible(true);
   };
-
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -31,7 +31,6 @@ const Product: React.FC = () => {
   useEffect(() => {
     dispatch(getProductInfo(productId))
   }, [])
-
   
   return <div className="product">
     <ProductParam productInfo={productInfo}></ProductParam>
@@ -73,7 +72,6 @@ const Product: React.FC = () => {
           <SwiperSlide><img src="/imgs/product/gallery-4.png" alt="" /></SwiperSlide>
           <SwiperSlide><img src="/imgs/product/gallery-5.jpg" alt="" /></SwiperSlide>
           <SwiperSlide><img src="/imgs/product/gallery-6.jpg" alt="" /></SwiperSlide>
-
         </Swiper>
         <p className="desc">小米8 AI变焦双摄拍摄</p>
       </div>
@@ -92,11 +90,6 @@ const Product: React.FC = () => {
             </div>
           )
         }
-
-
-
-
-
       </div>
     </div>
   </div>

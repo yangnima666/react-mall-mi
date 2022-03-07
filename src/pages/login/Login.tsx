@@ -9,29 +9,24 @@ import { useAppSelector } from "../../redux/hooks";
 import { login } from "../../redux/login/slice";
 import './Login.scss'
 
-
-
 const Login: React.FC = () => {
 
-  
-  const status = useAppSelector(s=>s.login.status)
+  const status = useAppSelector(s => s.login.status)
   const history = useHistory()
   const dispatch = useDispatch()
-  useEffect(() => { 
-    if(status === 0) {
+  useEffect(() => {
+    if (status === 0) {
       history.push('/index')
     }
   }, [status])
 
   const onFinish = (values: any) => {
-    
+
     dispatch(login({
       username: values.username,
       password: values.password
     }))
   };
-  
-
   return (
     <UserLayout>
       <div className="login">
@@ -68,8 +63,8 @@ const Login: React.FC = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button htmlType="submit" className="login-form-button">
-              登录
+            <Button size="large" htmlType="submit" className="login-form-button">
+              提交
             </Button>
 
           </Form.Item>

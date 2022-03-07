@@ -4,7 +4,12 @@ import './CartLayout.scss'
 import { NavFooter } from "../navFooter";
 import { useAppSelector } from "../../redux/hooks";
 
-export const CartLayout: React.FC = (props) => {
+
+interface Props {
+  title:string,
+  hasSubTitle:boolean
+}
+export const CartLayout: React.FC<Props> = (props) => {
   const { Footer, Content } = Layout;
   const data = useAppSelector(s=>s.login.data)
   
@@ -17,7 +22,7 @@ export const CartLayout: React.FC = (props) => {
               <a href="/index"></a>
             </div>
             <div className="title">
-              <h2>标题<span>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</span></h2>
+              <h2>{props.title}{props.hasSubTitle?(<span>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</span>):(<></>)}</h2>
             </div>
             <div className="username">
               <a href="#!">{data.username}</a>

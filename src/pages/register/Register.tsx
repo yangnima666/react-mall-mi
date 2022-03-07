@@ -33,74 +33,74 @@ const Register: React.FC = () => {
           scrollToFirstError
         >
           <Form.Item
-            name="username"
-            label="username"
+            name="用户名"
+            
             rules={[
 
               {
                 required: true,
-                message: 'Please input your username!',
+                message: '请输入用户名',
               },
             ]}
           >
-            <Input />
+            <Input placeholder="请输入用户名"/>
           </Form.Item>
           <Form.Item
-            name="email"
-            label="E-mail"
+            name="邮箱"
+            
             rules={[
               {
                 type: 'email',
-                message: 'The input is not valid E-mail!',
+                message: '请输入正确的格式',
               },
               {
                 required: true,
-                message: 'Please input your E-mail!',
+                message: '请输入邮箱',
               },
             ]}
           >
-            <Input />
+            <Input placeholder="请输入邮箱"/>
           </Form.Item>
 
           <Form.Item
-            name="password"
-            label="Password"
+            name="密码"
+            
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: '请输入密码',
               },
             ]}
             hasFeedback
           >
-            <Input.Password />
+            <Input.Password placeholder="请输入密码"/>
           </Form.Item>
 
           <Form.Item
             name="confirm"
-            label="Confirm Password"
+            
             dependencies={['password']}
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please confirm your password!',
+                message: '请确认密码',
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                  return Promise.reject(new Error('两次输入的密码不一致'));
                 },
               }),
             ]}
           >
-            <Input.Password />
+            <Input.Password placeholder="确认密码"/>
           </Form.Item>
           <Form.Item >
-            <Button type="primary" htmlType="submit">
-              Submit
+            <Button size="large" htmlType="submit" style={{width:320,backgroundColor:"#FF6600",color:"#fff",border:'none'}}>
+              提交
             </Button>
           </Form.Item>
         </Form>

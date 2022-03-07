@@ -1,0 +1,21 @@
+@import '../../assets/scss/config.scss';
+.order-list {
+  height: 85vh;
+  background-color:$colorJ ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .img {
+    width: 240px;
+    height: 182px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .tip {
+    font-size: 20px;
+    color: $colorD;
+  }
+}

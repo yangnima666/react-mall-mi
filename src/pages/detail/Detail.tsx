@@ -15,24 +15,26 @@ import { addCart } from '../../redux/cart/slice'
 
 const Detail: React.FC = () => {
 
-  const productInfo = useAppSelector(s => s.productInfo.data)
+  const productInfo = useAppSelector(s => s.productInfo.data)//获取商品详情
   const dispatch = useDispatch()
   const location = useLocation()
   const history = useHistory()
-  const productId = location.pathname.slice(8)
+  const productId = location.pathname.slice(8)//获取商品id
   console.log(productId)
-  const [version1, setversion1] = useState(false)
+  const [version1, setversion1] = useState(false)//控制版本选择
+  //控制版本选择
   const check1 = () => {
     setversion1(!version1)
     setversion2(false)
   }
   const selected: boolean = true
+  //控制版本选择
   const [version2, setversion2] = useState(false)
   const check2 = () => {
     setversion2(!version2)
     setversion1(false)
   }
-
+//控制加入购物车后的弹窗显示
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -136,7 +138,7 @@ const Detail: React.FC = () => {
             <div className="item-total">
               <div className="phone-info clearfix">
                 <div className="fl">{productInfo.name} {version1 ? '6GB+64GB 全网通' : '4GB+64GB 移动4G'} 深灰色</div>
-                {/* {{version==1?'6GB+64GB 全网通':'4GB+64GB 移动4G'}} */}
+              
                 <div className="fr">{productInfo.price}元</div>
               </div>
               <div className="phone-total">总计：{productInfo.price}元</div>

@@ -1,11 +1,13 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface ProductProps {
-  list: any
+  list: any,
+  
 }
 const initialState: ProductProps = {
-  list: []
+  list: [],
+ 
 
 }
 
@@ -35,9 +37,10 @@ export const productSlice = createSlice({
     },
     [fetchProductData.fulfilled.type]: (state, action) => {
       state.list = action.payload.data.list
+      
     },
-    [fetchProductData.rejected.type]: (state, action) => {
-
+    [fetchProductData.rejected.type]: (state, action: PayloadAction<string | null>) => {
+      
     },
   }
 })

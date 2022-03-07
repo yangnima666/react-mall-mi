@@ -5,16 +5,18 @@ interface Props {
   list:any
   sum:number,
   selectedAll:boolean,
-  quantity:number,
-  cartTotalPrice:number
+ 
+  cartTotalPrice:number,
+ 
 }
 
 const initialState:Props = {
   list:[],
   sum:0,
   selectedAll:false,
-  quantity:0,
-  cartTotalPrice:0
+  
+  cartTotalPrice:0,
+  
 }
 //获取
 export const getCart = createAsyncThunk(
@@ -55,30 +57,30 @@ export const deleteCart = createAsyncThunk(
    return data
   }
 )
-//全选
-export const checkAllCart = createAsyncThunk(
-  'cart/checkAllCart',
-  async()=> {
-   const {data} =  await axios.put(`/api/carts/selectAll`)
-   return data
-  }
-)
-//取消全选
-export const unCheckAllCart = createAsyncThunk(
-  'cart/unCheckAllCart',
-  async()=> {
-   const {data} =  await axios.put(`/api/carts/unSelectAll`)
-   return data
-  }
-)
-//获取总数
-export const getCartSum = createAsyncThunk(
-  'cart/unCheckAllCart',
-  async()=> {
-   const {data} =  await axios.get(`/api/carts/products/sum`)
-   return data
-  }
-)
+// //全选
+// export const checkAllCart = createAsyncThunk(
+//   'cart/checkAllCart',
+//   async()=> {
+//    const {data} =  await axios.put(`/api/carts/selectAll`)
+//    return data
+//   }
+// )
+// //取消全选
+// export const unCheckAllCart = createAsyncThunk(
+//   'cart/unCheckAllCart',
+//   async()=> {
+//    const {data} =  await axios.put(`/api/carts/unSelectAll`)
+//    return data
+//   }
+// )
+// //获取总数
+// export const getCartSum = createAsyncThunk(
+//   'cart/unCheckAllCart',
+//   async()=> {
+//    const {data} =  await axios.get(`/api/carts/products/sum`)
+//    return data
+//   }
+// )
 
 export const cartSlice = createSlice({
   name:'cart',
@@ -111,17 +113,18 @@ export const cartSlice = createSlice({
       
     },
     //更新
-    // [putCart.pending.type]: (state) => {
+    [putCart.pending.type]: (state) => {
       
-    // },
-    // [putCart.fulfilled.type]: (state, action) => {
-    //   state.list = action.payload.data.cartProductVoList;
-      
-    // },
-    // [putCart.rejected.type]: (state, action: PayloadAction<string | null>) => {
+    },
+    [putCart.fulfilled.type]: (state, action) => {
+      state.list = action.payload.data.cartProductVoList;
       
       
-    // },
+    },
+    [putCart.rejected.type]: (state, action: PayloadAction<string | null>) => {
+      
+      
+    },
     // //删除
     [deleteCart.pending.type]: (state) => {
       

@@ -10,6 +10,7 @@ import './NavHeader.scss'
 
 export const NavHeader: React.FC = () => {
   const product = useAppSelector(state => state.product.list)
+  
   const data = useAppSelector(s => s.login.data)
   let status = useAppSelector(s => s.login.status)
   const list = useAppSelector(s=>s.cart.list)
@@ -21,19 +22,15 @@ export const NavHeader: React.FC = () => {
   const logOut = () => {
     dispatch(logout())
     status = 1
+    alert('退出成功')
     history.push('/index')
   }
-  // const [username, setUsername] = useState('')
-  console.log(data)
   useEffect(() => {
     dispatch(fetchProductData(6))
     dispatch(getCart())
   }, [])
-  // useEffect(()=> {
-  //   setUsername(data.username)
-  // },[])
+  
   return (
-
     <div className="header">
       <div className="nav-topbar">
         <div className="container">
@@ -54,12 +51,10 @@ export const NavHeader: React.FC = () => {
                 : (<>
                   <a href="#!">{data.username}</a>
                   <a href="#!" onClick={logOut}>退出</a>
-                  <a href="/#/order/list">我的订单</a>
+                  <a href="/orderList">我的订单</a>
                 </>)
             }
-
-
-            <a className="my-cart" onClick={goToCart}><span className="icon-cart"></span>购物车({list.length})</a>
+            <div className="my-cart" onClick={goToCart}><span className="icon-cart"></span>购物车({list.length})</div>
           </div>
         </div>
       </div>
@@ -71,9 +66,8 @@ export const NavHeader: React.FC = () => {
           <div className="header-menu">
             <div className="item-menu">
               <span>小米手机</span>
-              {/* <NavChildren productList={product}></NavChildren> */}
               <div className="children">
-                <ul>
+                    <ul>
                   {
                     product.map((item: any, index: any) => (
                       <li className="product" key={`product-${index.toString()}`}>
@@ -155,9 +149,9 @@ export const NavHeader: React.FC = () => {
             </div>
           </div>
           <div className="header-search">
-            <div className="wrapper">
+            <div className="wrapper-input">
               <input type="text" name="keyword" />
-              <a href="#!"></a>
+              <div className="search"></div>
             </div>
           </div>
         </div>

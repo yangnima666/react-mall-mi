@@ -10,9 +10,6 @@ import { useAppSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 import { fetchProductData } from "../../redux/product/slice";
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-
-
  const Index: React.FC = () => {
   const menuList = [
     [
@@ -36,7 +33,7 @@ import { fetchProductData } from "../../redux/product/slice";
     ],
     [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
   ]
-  const productList = useAppSelector((s) => s.product.list)
+  const productList = useAppSelector((s) => s.product.list)//获取商品列表
   
   const dispatch = useDispatch()
 
@@ -58,7 +55,7 @@ import { fetchProductData } from "../../redux/product/slice";
                         <ul key={index.toString()}>
                           {
                             item.map((subItem: any, subIndex) => (
-                              <li>
+                              <li key={`children-${index.toString()}-${subIndex.toString()}`}>
                                 <a href={subItem ? '/product/' + subItem.id : ''}>
                                   <img src={subItem ? subItem.img : '/imgs/item-box-1.png'} alt="" />
                                   {subItem ? subItem.name : '小米9'}
