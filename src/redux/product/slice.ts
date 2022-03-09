@@ -3,11 +3,12 @@ import axios from "axios";
 
 interface ProductProps {
   list: any,
+  id:number
   
 }
 const initialState: ProductProps = {
   list: [],
- 
+  id:0
 
 }
 
@@ -37,6 +38,7 @@ export const productSlice = createSlice({
     },
     [fetchProductData.fulfilled.type]: (state, action) => {
       state.list = action.payload.data.list
+      state.id = action.payload.data.list.id
       
     },
     [fetchProductData.rejected.type]: (state, action: PayloadAction<string | null>) => {

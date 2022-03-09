@@ -20,6 +20,9 @@
         color: #ffffff;
         margin-right: 0;
         cursor: pointer;
+        &:hover {
+          opacity: 0.8
+        }
         .icon-cart {
           @include bgImg(16px, 12px, "../../../public/imgs/icon-cart-checked.png");
           

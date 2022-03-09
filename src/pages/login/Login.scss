@@ -7,4 +7,10 @@
   color: #fff;
   width: 320px;
   height: 40px;
+  &:hover {
+    color: #fff;
+    background-color: $colorA;
+    border: none;
+    opacity: 0.8;
+  }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import './NavFooter.scss'
 
-export const NavFooter:React.FC = () => {
+const NavFooterComponent:React.FC = () => {
   return (
     <div className="footer">
     <div className="footer-logo">
@@ -19,3 +19,4 @@ export const NavFooter:React.FC = () => {
   </div>
   )
 }
+export const NavFooter = React.memo(NavFooterComponent)

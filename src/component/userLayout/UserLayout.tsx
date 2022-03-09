@@ -2,7 +2,7 @@ import { Layout, Popover } from "antd";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import './UserLayout.scss'
-export const UserLayout: React.FC = (props) => {
+export const UserLayout: React.FC =React.memo((props) => {
   const { Header, Footer, Sider, Content } = Layout;
   const history = useHistory()
   const content = (
@@ -59,4 +59,4 @@ export const UserLayout: React.FC = (props) => {
 
 
   </>
-}
+}) 

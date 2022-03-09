@@ -31,8 +31,8 @@ const OrderPay: React.FC = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  console.log(orderList)
-  console.log(orderNo)
+  // console.log(orderList)
+  // console.log(orderNo)
   return (
     <CartLayout title={"订单支付"} hasSubTitle={false}>
       <div className="orderPay"><div className="wrapper">

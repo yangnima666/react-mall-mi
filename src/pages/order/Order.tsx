@@ -1,4 +1,5 @@
 
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Cascader, Col, Input, Modal, Row} from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import React, { useEffect, useState } from "react";
@@ -49,7 +50,7 @@ const Order: React.FC = () => {
   
   const history = useHistory()
   const list = useAppSelector(s => s.cart.list)
-  const orderList = useAppSelector(s=>s.order.orderList)
+  // const orderList = useAppSelector(s=>s.order.orderList)
   const dispatch = useDispatch()
   const cartTotalPrice = useAppSelector(s => s.cart.cartTotalPrice)
   const shippingId = useAppSelector(s=>s.order.shippingId)
@@ -77,7 +78,7 @@ const Order: React.FC = () => {
     dispatch(getCart())
     
   }, [])
-  console.log(orderList)
+  // console.log(orderList)
   return (
     <CartLayout title={'确认订单'} hasSubTitle={false}>
       <div className="order">
@@ -88,14 +89,14 @@ const Order: React.FC = () => {
                 <h2 className="addr-title">收货地址</h2>
                 <div className="addr-list clearfix">
                   <div className="addr-info" >
-                    <h2>名字</h2>
-                    <div className="phone">名字</div>
-                    <div className="street">名字</div>
+                    <h2>yang666</h2>
+                    <div className="phone">13912341234</div>
+                    <div className="street">广州市</div>
                     <div className="action">
-                      <a href="#!" className="fl" >
-                      </a>
-                      <a href="#!" className="fr" >
-                      </a>
+                      <div className="fl"  ><EditOutlined />
+                      </div>
+                      <div className="fr" ><DeleteOutlined />
+                      </div>
                     </div>
                   </div>
                   <div className="addr-add" onClick={showModal}>
@@ -119,7 +120,7 @@ const Order: React.FC = () => {
                 <ul>
                   {
                     list.map((item: any, index: any) => (
-                      <li >
+                      <li key={`item-good-${index.toString()}`}>
                         <div className="good-name">
                           <img src={item.productMainImage} alt="" />
                           <span>{item.productName + ' ' + item.productSubtitle}</span>

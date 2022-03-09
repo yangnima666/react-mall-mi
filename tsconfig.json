@@ -22,12 +22,15 @@
     "jsx": "react-jsx",
     "plugins": [
       {
-          "name":"typescript-plugin-css-modules"
+        "name": "typescript-plugin-css-modules",
+      },
+      {
+        "name": "speed-measure-webpack-plugin"
       }
-  ]
-    
+    ]
   },
   "include": [
-    "src"
-, "src/setupProxy.js"  ]
+    "src",
+    "src/setupProxy.js"
+  ]
 }

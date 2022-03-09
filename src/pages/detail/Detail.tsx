@@ -20,7 +20,7 @@ const Detail: React.FC = () => {
   const location = useLocation()
   const history = useHistory()
   const productId = location.pathname.slice(8)//获取商品id
-  console.log(productId)
+  // console.log(productId)
   const [version1, setversion1] = useState(false)//控制版本选择
   //控制版本选择
   const check1 = () => {
@@ -37,9 +37,9 @@ const Detail: React.FC = () => {
 //控制加入购物车后的弹窗显示
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+  // const showModal = () => {
+  //   setIsModalVisible(true);
+  // };
 
   const handleOk = () => {
     setIsModalVisible(false);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './index.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -9,8 +9,11 @@ import "swiper/css/navigation";
 import { useAppSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 import { fetchProductData } from "../../redux/product/slice";
+import { addCart } from "../../redux/cart/slice";
+import { Modal } from "antd";
 
- const Index: React.FC = () => {
+const Index: React.FC = () => {
+
   const menuList = [
     [
       {
@@ -33,10 +36,25 @@ import { fetchProductData } from "../../redux/product/slice";
     ],
     [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
   ]
-  const productList = useAppSelector((s) => s.product.list)//获取商品列表
-  
-  const dispatch = useDispatch()
 
+  const productList = useAppSelector((s) => s.product.list)//获取商品列表
+  const [selected, setSelected] = useState(false)
+  const dispatch = useDispatch()
+  // const showModal = () => {
+  //   setSelected(true);
+  // };
+
+  const handleOk = () => {
+    setSelected(false);
+  };
+
+  const handleCancel = () => {
+    setSelected(false);
+  };
+  const addCarts = (productId: any) => {
+    dispatch(addCart({ productId, selected }))
+    setSelected(true);
+  }
   useEffect(() => {
     dispatch(fetchProductData(8))
   }, [])
@@ -114,7 +132,7 @@ import { fetchProductData } from "../../redux/product/slice";
                 <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/39bb34167f6c178d6bb768d8872c97f8.jpg?w=2452&h=920" alt="" />
               </SwiperSlide>
             </Swiper>
-            
+
           </div>
           <div className="ads-box">
             <a href="#!" >
@@ -146,7 +164,7 @@ import { fetchProductData } from "../../redux/product/slice";
 
               <div className="list-box">
                 {
-                  productList.map((item:any, index:any) => (
+                  productList.map((item: any, index: any) => (
                     <div className="list" key={index.toString()}>
                       <div className="item" >
                         <span className="">新品</span>
@@ -156,31 +174,23 @@ import { fetchProductData } from "../../redux/product/slice";
                         <div className="item-info">
                           <h3>{item.name}</h3>
                           <p>{item.subtitle}</p>
-                          <p className="price">{item.price}元</p>
+                          <p className="price" onClick={() => { addCarts(item.id) }}>{item.price}元</p>
+                          <Modal title="Basic Modal" visible={selected} onOk={handleOk} onCancel={handleCancel}>
+                            <p>添加购物车成功</p>
+                            
+                          </Modal>
                         </div>
                       </div>
                     </div>
                   ))
                 }
-              
+
               </div>
             </div>
           </div>
         </div>
 
-        {/* <modal 
-      title="提示" 
-      sureText="查看购物车" 
-      btnType="1" 
-      modalType="middle" 
-      src:showModal="showModal"
-      srcubmit="goToCart"
-      srcancel="showModal=false"
-      >
-      <template src:body>
-        <p>商品添加成功！</p>
-      </template>
-    </modal> */}
+
       </div>
     </>
 

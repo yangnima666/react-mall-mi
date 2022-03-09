@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getCart } from "../../redux/cart/slice";
@@ -8,7 +8,7 @@ import { fetchProductData } from "../../redux/product/slice";
 
 import './NavHeader.scss'
 
-export const NavHeader: React.FC = () => {
+ export const NavHeader: React.FC = () => {
   const product = useAppSelector(state => state.product.list)
   
   const data = useAppSelector(s => s.login.data)
@@ -27,7 +27,10 @@ export const NavHeader: React.FC = () => {
   }
   useEffect(() => {
     dispatch(fetchProductData(6))
-    dispatch(getCart())
+    if(status===0) {
+      dispatch(getCart())
+    }
+    
   }, [])
   
   return (
@@ -50,7 +53,7 @@ export const NavHeader: React.FC = () => {
                 </>
                 : (<>
                   <a href="#!">{data.username}</a>
-                  <a href="#!" onClick={logOut}>退出</a>
+                  <a  onClick={logOut}>退出</a>
                   <a href="/orderList">我的订单</a>
                 </>)
             }
@@ -159,3 +162,4 @@ export const NavHeader: React.FC = () => {
     </div >
   )
 } 
+// export const NavHeader = React.memo(NavHeaderComponent) 
