@@ -1,0 +1,80 @@
+@import '../../../../assets/scss/config.scss';
+@import '../../../../assets/scss/mixin.scss';
+.swiper-box {
+  .nav-menu {
+    position: absolute;
+    width: 264px;
+    height: 451px;
+    z-index: 9;
+    padding: 26px 0;
+    background-color: #55585a7a;
+    box-sizing: border-box;
+    .menu-wrap {
+      .menu-item {
+        height: 50px;
+        line-height: 50px;
+        a {
+          position: relative;
+          display: block;
+          font-size: 16px;
+          color: #ffffff;
+          padding-left: 30px;
+          &:after {
+            position: absolute;
+            right: 30px;
+            top: 17.5px;
+            content: " ";
+            @include bgImg(10px, 15px, "../../../public/imgs/icon-arrow.png");
+          }
+        }
+        &:hover {
+          background-color: $colorA;
+          .children {
+            display: block;
+          }
+        }
+        .children {
+          display: none;
+          width: 962px;
+          height: 451px;
+          background-color: $colorG;
+          position: absolute;
+          top: 0;
+          left: 264px;
+          border: 1px solid $colorH;
+          ul {
+            display: flex;
+            justify-content: space-between;
+            height: 75px;
+            li {
+              height: 75px;
+              line-height: 75px;
+              flex: 1;
+              padding-left: 23px;
+            }
+            .product-item-box {
+              color: $colorB;
+              font-size: 14px;
+            }
+            img {
+              width: 42px;
+              height: 35px;
+              vertical-align: middle;
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .mySwiper {
+    height: 451px;
+    .swiper-button-prev {
+      left: 274px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

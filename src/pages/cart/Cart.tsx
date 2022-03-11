@@ -15,7 +15,7 @@ const Cart: React.FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [isAllChecked, setAllChecked] = useState(selectAll)//控制全选
-  const [selected, setSelected] = useState(false)//控制选项卡
+  
 
   // const checknum = list.forEach((item: any) => item.productSelected).length;
   const isAllCheck = () => {
@@ -31,29 +31,23 @@ const Cart: React.FC = () => {
   const updataProduct = (item: any, type?: '+' | "-") => {
     //这个函数要控制选项框productSelected为true，还有控制商品数量quantity的加减
     let quantity = item.quantity
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    // const [selected, setSelected] = useState(item.productSelected)//控制选项卡
+    let selected = item.productSelected 
     let id = item.productId
     if (type === '+') {
-      if (quantity > item.productStock) {
+      if(quantity > item.productStock){
         alert('我们没有那么多的库存鸭QAQ')
       }
       ++quantity
     } else if (type === '-') {
-      if (quantity === 1) {
+      if (quantity === 1){
         alert('至少得选一件吧233')
-        return
       }
       --quantity
     } else {
-
-      setSelected(!item.productSelected)
-
-      console.log(selected, new Date())
+        selected = !item.productSelected 
     }
-    console.log(selected, new Date())
     dispatch(putCart({ quantity, selected, id }))
-    
+
     //每次加减要控制购物车的商品数量，商品总价productTotalPrice
     //也就是说我们在这里要发送请求更新购物车，删除购物车的请求
     //于是我们在这个函数总需要穿三个参数，商品id，商品数量quantity，商品选择productSelected

@@ -9,7 +9,7 @@ import { fetchProductData } from "../../redux/product/slice";
 import './NavHeader.scss'
 
  export const NavHeader: React.FC = () => {
-  const product = useAppSelector(state => state.product.list)
+  const productList = useAppSelector(state => state.product.list)
   
   const data = useAppSelector(s => s.login.data)
   let status = useAppSelector(s => s.login.status)
@@ -17,7 +17,12 @@ import './NavHeader.scss'
   const dispatch = useDispatch()
   const history = useHistory()
   const goToCart = ()=> {
-    history.push("/cart")
+    if(status===0) {
+      history.push("/cart")
+    }else {
+      alert('先登陆吧')
+    }
+    
   }
   const logOut = () => {
     dispatch(logout())
@@ -26,7 +31,7 @@ import './NavHeader.scss'
     history.push('/index')
   }
   useEffect(() => {
-    dispatch(fetchProductData(6))
+    // dispatch(fetchProductData(6))
     if(status===0) {
       dispatch(getCart())
     }
@@ -72,7 +77,7 @@ import './NavHeader.scss'
               <div className="children">
                     <ul>
                   {
-                    product.map((item: any, index: any) => (
+                    productList.slice(0,6).map((item: any, index: any) => (
                       <li className="product" key={`product-${index.toString()}`}>
                         <a href={`/product/${item.id}`}>
                           <div className="pro-img">

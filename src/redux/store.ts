@@ -4,13 +4,13 @@ import { userSlice } from './login/slice'
 import { persistStore, persistReducer } from 'redux-persist'
 import { productSlice } from './product/slice'
 import { productInfoSlice } from './productInfo/slice'
-import storage from "redux-persist/lib/storage";
+import sessionStorage from "redux-persist/lib/storage/session";
 import { orderSlice } from './order/slice'
 
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage:sessionStorage,
   whitelist: ["login"]
 }
 const rootReducer = combineReducers({

@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Alert, Button, Checkbox, Form, Input } from "antd";
 
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -10,10 +10,10 @@ import { login } from "../../redux/login/slice";
 import './Login.scss'
 
 const Login: React.FC = () => {
-
   const status = useAppSelector(s => s.login.status)
   const history = useHistory()
   const dispatch = useDispatch()
+
   useEffect(() => {
     if (status === 0) {
       history.push('/index')
@@ -21,15 +21,25 @@ const Login: React.FC = () => {
   }, [status])
 
   const onFinish = (values: any) => {
-
     dispatch(login({
       username: values.username,
       password: values.password
     }))
+    
+    // if (status === 0) {
+
+    //   history.push('/index')
+    // }else if(status === 1) {
+    //   alert(message)
+    // }
+    
   };
+
   return (
     <UserLayout>
       <div className="login">
+        
+      
         <Form
           name="normal_login"
           className="login-form"

@@ -4,11 +4,13 @@ import axios from 'axios'
 
 interface Props {
   data:any,
-  status:number
+  status:number,
+  msg:any
 }
 const initialState:Props = {
   data:{},
-  status:1
+  status:1,
+  msg:null
 }
 export const login = createAsyncThunk(
   'login/loginUser',
@@ -45,9 +47,10 @@ export const userSlice = createSlice({
     [login.fulfilled.type]: (state, action) => {
       state.data = action.payload.data;
       state.status = action.payload.status
+      
     },
     [login.rejected.type]: (state, action: PayloadAction<string | null>) => {
-      
+      // state.msg = action.payload
       
     },
     [logout.pending.type]: (state) => {
